@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""a type-annotated function"""
-from typing import Union, Any, Sequence, Iterable
+""" basic annotations """
+from typing import Sequence, Union, Any
 
 
-def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
-    """a type-annotated function"""
+def safe_first_element(lst: Sequence[Any]
+                       ) -> Union[Any, None]:
+    """ duck typing """
     if lst:
         return lst[0]
     else:
