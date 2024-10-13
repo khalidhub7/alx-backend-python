@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""a type-annotated function"""
-from typing import Union, List
+""" basic annotations """
+from typing import List, Union
 
 
 def sum_mixed_list(mxd_lst: List[Union[int, float]]) -> float:
-    """a type-annotated function"""
-    sum: float = 0.0
-    for n in mxd_lst:
-        sum += float(n)
+    """ sum """
+    sum: float = 0.00
+    for i in mxd_lst:
+        sum += i
     return sum
