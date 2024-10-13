@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""a type-annotated function"""
+""" basic annotations """
 
 
 def add(a: float, b: float) -> float:
-    """an add type-annotated function"""
-    return a + b
+    """ add """
+    return float(a + b)
