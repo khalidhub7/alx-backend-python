@@ -2,16 +2,17 @@
 """ basics of async """
 import asyncio
 import random
+from typing import List
 
 
-async def wait_random(max_delay=10):
+async def wait_random(max_delay: int = 10) -> float:
     """ random """
     gen = random.uniform(0, max_delay)
     await asyncio.sleep(gen)
     return gen
 
 
-async def task_wait_n(n, max_delay):
+async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """ multiplee coroutines """
     tasks = []
     for i in range(n):
