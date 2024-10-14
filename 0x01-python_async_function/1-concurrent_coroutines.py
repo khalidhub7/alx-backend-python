@@ -5,7 +5,7 @@ wait_ran = __import__('0-basic_async_syntax').wait_random
 
 
 async def wait_n(n, max_delay):
-    """ multiple coroutines """
+    """ multiplee coroutines """
     tasks = []
     for i in range(n):
         tasks.append(wait_ran(max_delay))
