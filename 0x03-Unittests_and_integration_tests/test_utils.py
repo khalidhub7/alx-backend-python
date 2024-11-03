@@ -19,5 +19,5 @@ class TestAccessNestedMap(TestCase):
             self, nested_map: Dict, path: Tuple[str],
             expected_result: Union[int, Dict]) -> None:
         """ test """
-        TestCase.assertEqual(access_nested_map(
+        self.assertEqual(access_nested_map(
             nested_map, path), expected_result)
