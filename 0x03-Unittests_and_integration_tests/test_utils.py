@@ -18,5 +18,7 @@ class TestAccessNestedMap(TestCase):
             self, nested_map, path, expected_result):
         """ test """
         TestCase.assertEqual(
-            access_nested_map(nested_map, path),
+            access_nested_map(
+                nested_map,
+                path),
             expected_result)
