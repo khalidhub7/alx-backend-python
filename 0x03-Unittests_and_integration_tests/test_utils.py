@@ -4,7 +4,8 @@ unit tests: access_nested_map()
 """
 from unittest import TestCase
 from parameterized import parameterized
-from required.utils import access_nested_map
+from utils import access_nested_map
+from typing import Dict, Tuple, Union
 
 
 class TestAccessNestedMap(TestCase):
@@ -14,6 +15,9 @@ class TestAccessNestedMap(TestCase):
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
-    def test_access_nested_map(self, nested_map, path, expected_result):
+    def test_access_nested_map(
+            self, nested_map: Dict, path: Tuple[str],
+            expected_result: Union[int, Dict]) -> None:
         """ test """
-        TestCase.assertEqual(access_nested_map(nested_map, path), expected_result)
+        TestCase.assertEqual(access_nested_map(
+            nested_map, path), expected_result)
