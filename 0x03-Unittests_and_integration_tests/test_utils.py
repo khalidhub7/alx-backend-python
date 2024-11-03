@@ -4,7 +4,7 @@ unit tests: access_nested_map()
 """
 from unittest import TestCase
 from parameterized import parameterized
-from utils import *
+from utils import access_nested_map
 from typing import Dict, Tuple, Union
 
 
