@@ -71,10 +71,12 @@ class TestMemoize(TestCase):
             def a_property(self):
                 """ calls a_method """
                 return self.a_method()
-        obj = TestClass()
+
         with patch.object(
-            obj, "a_method", return_value=42
+            TestClass, "a_method",
+            return_value=lambda: 42
         ) as mock_a_method:
+            obj = TestClass()
             result_1 = obj.a_property()
             result_2 = obj.a_property()
 
