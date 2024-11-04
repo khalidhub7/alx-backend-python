@@ -21,3 +21,16 @@ class TestAccessNestedMap(TestCase):
         """ test """
         self.assertEqual(access_nested_map(
             nested_map, path), expected_result)
+
+    @parameterized.expand([
+        ({}, ("a",), "a"),
+        ({"a": 1}, ("a", "b"), ("b")),
+    ])
+    def test_access_nested_map_exception(
+            self, nested_map: Dict, path: Tuple[str],
+            expected_result: str) -> None:
+        """ KeyError test for invalid paths """
+        with self.assertRaises(KeyError) as context:
+            access_nested_map(nested_map, path)
+        self.assertEqual(
+            str(context.exception), expected_result)
