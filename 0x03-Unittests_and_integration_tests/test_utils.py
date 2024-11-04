@@ -47,9 +47,9 @@ class TestGetJson(TestCase):
     ])
     @patch('requests.get')
     def test_get_json(
-            self, url, payload, mock_get):
+            self, url, payload, mock_obj):
         """ Test the get_json """
-        mock_get.return_value.json.return_value = payload
+        mock_obj.return_value.json.return_value = payload
         result = get_json(url)
         self.assertEqual(result, payload)
-        mock_get.assert_called_once_with(url)
+        mock_obj.assert_called_once_with(url)
