@@ -28,9 +28,9 @@ class TestAccessNestedMap(TestCase):
     ])
     def test_access_nested_map_exception(
             self, nested_map: Dict, path: Tuple[str],
-            expected_result: Exception) -> None:
+            expected_result: str) -> None:
         """ KeyError test for invalid paths """
         with self.assertRaises(KeyError) as context:
             access_nested_map(nested_map, path)
-        self.assertEqual(
-            str(context.exception), expected_result)
+            self.assertEqual(
+                str(context.exception), expected_result)
