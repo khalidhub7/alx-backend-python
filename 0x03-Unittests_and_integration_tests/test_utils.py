@@ -3,8 +3,11 @@
 unit tests: access_nested_map()
 """
 from unittest import TestCase
+from unittest.mock import patch, Mock
 from parameterized import parameterized
-from utils import access_nested_map
+from utils import (
+    access_nested_map,
+    get_json)
 from typing import Dict, Tuple, Union
 
 
@@ -34,3 +37,19 @@ class TestAccessNestedMap(TestCase):
             access_nested_map(nested_map, path)
             self.assertEqual(
                 str(context.exception), expected_result)
+
+
+class TestGetJson(TestCase):
+    """ Test the get_json """
+    @patch('requests.get')
+    def test_get_json(self, mock_get):
+        """ Test the get_json """
+        data = [
+            ("http://example.com", {"payload": True}),
+            ("http://holberton.io", {"payload": False})
+        ]
+        for url, payload in data:
+            mock_get.return_value.json.return_value = payload
+            result = get_json(url)
+            self.assertEqual(result, payload)
+            mock_get.assert_called_once_with(url)
