@@ -8,7 +8,7 @@ wait_random = __import__(
 
 
 async def wait_n(n: int, max_delay: int
-                 ) -> list[float]:
+                 ) -> List[float]:
     """ run wait_random n times concurrently """
 
     return await asyncio.gather(
