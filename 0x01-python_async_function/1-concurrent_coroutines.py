@@ -12,11 +12,13 @@ async def wait_n(n: int, max_delay: int
     """ run wait_random n times concurrently """
 
     tasks = [
-        wait_random(max_delay) for _ in range(n)
+        wait_random(max_delay)
+        for _ in range(n)
     ]
 
     finished = [
-        await task for task in asyncio.as_completed(tasks)
+        await task
+        for task in asyncio.as_completed(tasks)
     ]
 
     return finished
