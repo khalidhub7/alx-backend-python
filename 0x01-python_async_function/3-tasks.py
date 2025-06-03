@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """ basics of async """
+
 import asyncio
-wait_ran = __import__('0-basic_async_syntax').wait_random
+wait_random = __import__(
+    '0-basic_async_syntax').wait_random
 
 
-def task_wait_random(max_delay: int) -> asyncio.Task:
-    """ task """
-    return asyncio.create_task(wait_ran(max_delay))
+async def task_wait_random(max_delay) -> asyncio.Task:
+    """ return a scheduled Task for wait_random """
+
+    return asyncio.create_task(
+        wait_random(max_delay)
+    )
