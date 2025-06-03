@@ -7,9 +7,10 @@ wait_random = __import__(
 
 
 def task_wait_random(max_delay: int
-                           ) -> asyncio.Task:
+                     ) -> asyncio.Task:
     """ return a scheduled Task for wait_random """
 
-    return asyncio.create_task(
+    task = asyncio.create_task(
         wait_random(max_delay)
     )
+    return task
