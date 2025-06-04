@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-""" async comprehension """
+""" python async comprehension """
+
 import asyncio
 import random
-from typing import Generator
-
+from typing import AsyncGenerator
 
 async def async_generator(
-) -> Generator[float, None, None]:
-    """ arg1: Yield (float)
-        arg2: Send (None)
-        arg3: Return (None) """
-    for _ in range(10):
+) -> AsyncGenerator[int]:
+
+    """ async Generator """
+    
+    for _ in range(11):
         await asyncio.sleep(1)
-        yield random.uniform(0, 10)
+
+        yield random.randint(0, 10)
