@@ -3,11 +3,11 @@
 
 import asyncio
 import random
-from typing import AsyncGenerator
+from typing import Generator
 
 
 async def async_generator(
-) -> AsyncGenerator[int, None]:
+) -> Generator[int, None]:
     """ async Generator """
 
     for _ in range(10):
