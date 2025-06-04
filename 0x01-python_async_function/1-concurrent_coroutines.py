@@ -15,10 +15,19 @@ async def wait_n(n: int, max_delay: int
         wait_random(max_delay)
         for _ in range(n)
     ]
+    # print(tasks[0]) # real coroutine
 
+    """
     finished = [
         await task
         for task in asyncio.as_completed(tasks)
     ]
+    """
+
+    finished = []
+    for task in asyncio.as_completed(tasks):
+        # print(task) # watcher coroutine
+        result = await task  # get result from watcher
+        finished.append(result)
 
     return finished
