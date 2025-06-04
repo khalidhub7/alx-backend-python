@@ -3,11 +3,11 @@
 
 import asyncio
 import random
-from typing import Generator
+from collections.abc import AsyncGenerator
 
 
 async def async_generator(
-) -> Generator[float, None, None]:
+) -> AsyncGenerator[float, None]:
     """ async Generator """
 
     for _ in range(10):
