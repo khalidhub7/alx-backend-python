@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
-""" async comprehension """
-import time
+""" python async comprehension """
+
 import asyncio
-async_compr = __import__(
+import time
+async_comprehension = __import__(
     '1-async_comprehension').async_comprehension
 
 
-async def measure_runtime(
-) -> float:
-    """
-- gather(): Waits for all tasks,
-    returns results in the given order
-- as_completed(): Returns results,
-    as soon as each task finishes """
-    start = time.time()
-    await asyncio.gather(*(
-        async_compr(
-        ) for _ in range(4)))
-    end = time.time()
+async def measure_runtime() -> float:
+    """ run time for four parallel comprehensions """
+
+    coroutines = [
+        async_comprehension()
+        for _ in range(4)
+    ]
+
+    start = asyncio.get_event_loop().time()
+
+    await asyncio.gather(*coroutines)
+
+    end = asyncio.get_event_loop().time()
+
     return end - start
