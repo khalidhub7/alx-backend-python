@@ -7,7 +7,7 @@ from typing import Generator
 
 
 async def async_generator(
-) -> Generator[int, None]:
+) -> Generator[int, None, None]:
     """ async Generator """
 
     for _ in range(10):
