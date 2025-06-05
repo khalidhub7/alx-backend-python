@@ -7,23 +7,21 @@ from typing import AsyncGenerator
 
 async def chat() -> AsyncGenerator[str, str]:
     """ async chat generator """
-
     name = yield 'your name?'
     age = yield 'your age?'
-
     yield f"Welcome {name}, {age} years old 😇"
 
 
 async def main():
-    """ test """
+    chatbot = chat()  # paused, waiting for asend()
 
-    newchat = chat()
+    ques1 = await chatbot.asend(None)  # Start the generator
+    print(ques1)
 
-    await newchat.__anext__()  # this mean start the chatbot
+    ques2 = await chatbot.asend('khalid')
+    print(ques2)
 
-    await newchat.asend('khalid')
-    result = await newchat.asend('22')
-
-    print(result)
+    finalMsg = await chatbot.asend('22')
+    print(finalMsg)
 
 asyncio.run(main())
