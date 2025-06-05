@@ -9,7 +9,7 @@ async def chat() -> AsyncGenerator[str, str]:
     """ async chat generator """
     name = yield 'your name?'
     age = yield 'your age?'
-    yield f"Welcome {name}, {age} years old 😇"
+    yield f"hi {name}, {age} yrs old 😇"
 
 
 async def main():
