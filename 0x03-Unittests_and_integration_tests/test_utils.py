@@ -49,11 +49,11 @@ class TestGetJson(unittest.TestCase):
         """ test 'get_json' func """
         with patch('requests.get') as mock_obj:
 
-            '''
+            """
             mock_obj.return_value → requests.get
             mock_obj.return_value.json.return_value
                                     → requests.get().json()
-            '''
+            """
             mock_obj.return_value.json.return_value = expected
             result = get_json(arg1)
             self.assertEqual(result, expected)
