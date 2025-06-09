@@ -6,7 +6,7 @@ from client import GithubOrgClient
 from parameterized import parameterized
 
 
-class Test(unittest.TestCase):
+class TestGithubOrgClient(unittest.TestCase):
     """ test 'GithubOrgClient' class """
 
     @parameterized.expand([
