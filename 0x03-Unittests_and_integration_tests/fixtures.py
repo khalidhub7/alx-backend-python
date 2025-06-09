@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 
+# Define the test payload data structure containing repository information
+# from GitHub
 TEST_PAYLOAD = [
     (
-        # GitHub organization API URL
+        # Repository URL configuration
         {
             "repos_url": "https://api.github.com/orgs/google/repos"
         },
-        # List of repository details
         [
+            # Repository: episodes.dart
             {
                 "id": 7697149,
                 "node_id": "MDEwOlJlcG9zaXRvcnk3Njk3MTQ5",
                 "name": "episodes.dart",
                 "full_name": "google/episodes.dart",
                 "private": False,
+                # Owner information
                 "owner": {
                     "login": "google",
                     "id": 1342004,
@@ -96,6 +99,7 @@ TEST_PAYLOAD = [
                 "archived": False,
                 "disabled": False,
                 "open_issues_count": 0,
+                # License information
                 "license": {
                     "key": "bsd-3-clause",
                     "name": "BSD 3-Clause \"New\" or \"Revised\" License",
@@ -107,12 +111,14 @@ TEST_PAYLOAD = [
                 "open_issues": 0,
                 "watchers": 12,
                 "default_branch": "master",
+                # Permissions settings
                 "permissions": {
                     "admin": False,
                     "push": False,
                     "pull": True
                 }
             },
+            # Repository: cpp-netlib
             {
                 "id": 7776515,
                 "node_id": "MDEwOlJlcG9zaXRvcnk3Nzc2NTE1",
@@ -218,6 +224,7 @@ TEST_PAYLOAD = [
                     "pull": True
                 }
             },
+            # Repository: dagger
             {
                 "id": 7968417,
                 "node_id": "MDEwOlJlcG9zaXRvcnk3OTY4NDE3",
@@ -269,7 +276,7 @@ TEST_PAYLOAD = [
                 "subscribers_url": "https://api.github.com/repos/google/dagger/subscribers",
                 "subscription_url": "https://api.github.com/repos/google/dagger/subscription",
                 "commits_url": "https://api.github.com/repos/google/dagger/commits{/sha}",
-                "git_commits_url": "https://api.github.com/repos/google/dagger/git/Commits{/sha}",
+                "git_commits_url": "https://api.github.com/repos/google/dagger/git/commits{/sha}",
                 "comments_url": "https://api.github.com/repos/google/dagger/comments{/number}",
                 "issue_comment_url": "https://api.github.com/repos/google/dagger/issues/comments{/number}",
                 "contents_url": "https://api.github.com/repos/google/dagger/contents/{+path}",
@@ -323,6 +330,7 @@ TEST_PAYLOAD = [
                     "pull": True
                 }
             },
+            # Repository: ios-webkit-debug-proxy
             {
                 "id": 8165161,
                 "node_id": "MDEwOlJlcG9zaXRvcnk4MTY1MTYx",
@@ -428,6 +436,7 @@ TEST_PAYLOAD = [
                     "pull": True
                 }
             },
+            # Repository: google.github.io
             {
                 "id": 8459994,
                 "node_id": "MDEwOlJlcG9zaXRvcnk4NDU5OTk0",
@@ -527,6 +536,7 @@ TEST_PAYLOAD = [
                     "pull": True
                 }
             },
+            # Repository: kratu
             {
                 "id": 8566972,
                 "node_id": "MDEwOlJlcG9zaXRvcnk4NTY2OTcy",
@@ -632,6 +642,7 @@ TEST_PAYLOAD = [
                     "pull": True
                 }
             },
+            # Repository: build-debian-cloud
             {
                 "id": 8858648,
                 "node_id": "MDEwOlJlcG9zaXRvcnk4ODU4NjQ4",
@@ -737,6 +748,7 @@ TEST_PAYLOAD = [
                     "pull": True
                 }
             },
+            # Repository: traceur-compiler
             {
                 "id": 9060347,
                 "node_id": "MDEwOlJlcG9zaXRvcnk5MDYwMzQ3",
@@ -842,6 +854,7 @@ TEST_PAYLOAD = [
                     "pull": True
                 }
             },
+            # Repository: firmata.py
             {
                 "id": 9065917,
                 "node_id": "MDEwOlJlcG9zaXRvcnk5MDY1OTE3",
@@ -950,22 +963,22 @@ TEST_PAYLOAD = [
         ],
         # List of all repository names
         [
-            "episodes.dart",
-            "cpp-netlib",
-            "dagger",
-            "ios-webkit-debug-proxy",
-            "google.github.io",
-            "kratu",
-            "build-debian-cloud",
-            "traceur-compiler",
-            "firmata.py"
+            'episodes.dart',
+            'cpp-netlib',
+            'dagger',
+            'ios-webkit-debug-proxy',
+            'google.github.io',
+            'kratu',
+            'build-debian-cloud',
+            'traceur-compiler',
+            'firmata.py'
         ],
-        # List of specific repository names (subset)
+        # List of repositories with Apache 2.0 license
         [
-            "dagger",
-            "kratu",
-            "traceur-compiler",
-            "firmata.py"
+            'dagger',
+            'kratu',
+            'traceur-compiler',
+            'firmata.py'
         ]
     )
 ]
