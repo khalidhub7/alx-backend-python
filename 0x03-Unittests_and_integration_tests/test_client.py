@@ -38,20 +38,27 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch.object(GithubOrgClient, '_public_repos_url',
                           new_callable=PropertyMock
                           ) as mock__public_repos_url:
-            payload = [
-                {"name": "repo1", "license": {"key": "mit"}},
-                {"name": "repo2", "license": {"key": "apache-2.0"}}
-            ]
 
-            mock__public_repos_url.return_value = "//api\
-.github.com/orgs/google/repos"   # this get repos_url from payload
-            mock_get_json.return_value = payload  # this is payload
+            payload = {
+                'repos_url': "https://api.github.com/orgs/google/repos",
+                'repos': [
+                    {"name": "repo1", "license": {"key": "mit"}},
+                    {"name": "repo2", "license": {"key": "apache-2.0"}}
+                ]
+            }
+
+            # this get repos_url from payload
+            mock__public_repos_url.return_value = payload['repos_url']
+            # this is payload
+            mock_get_json.return_value = payload['repos']
 
             obj = GithubOrgClient('google')
             self.assertEqual(obj.public_repos(), ['repo1', 'repo2'])
 
             mock__public_repos_url.assert_called_once()
             mock_get_json.assert_called_once()
+
+            # print(f'*** {obj.__dict__} ***')
 
 
 if __name__ == '__main__':
