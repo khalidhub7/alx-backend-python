@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 """ test client.py """
 import unittest
-from unittest.mock import patch, PropertyMock, MagicMock
-from client import GithubOrgClient
-from parameterized import parameterized, parameterized_class
 from fixtures import TEST_PAYLOAD
+from client import GithubOrgClient
+from unittest.mock import patch, PropertyMock, MagicMock
+from parameterized import parameterized, parameterized_class
 
 
 class TestGithubOrgClient(unittest.TestCase):
     """ test 'GithubOrgClient' class """
-
     @parameterized.expand([
         ('google', dict), ('abc', dict)
     ])
@@ -18,7 +17,6 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch('client.get_json') as mock_obj:
             mock_obj.return_value = {}
             obj = GithubOrgClient(arg1)
-
             self.assertEqual(type(obj.org), expected)
             # print(f'*** {obj.__dict__} ***')
             mock_obj.assert_called_once()
@@ -39,7 +37,6 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch.object(GithubOrgClient, '_public_repos_url',
                           new_callable=PropertyMock
                           ) as mock__public_repos_url:
-
             payload = {
                 'repos_url': "https://api.github.com/orgs/google/repos",
                 'repos': [
@@ -47,18 +44,14 @@ class TestGithubOrgClient(unittest.TestCase):
                     {"name": "repo2", "license": {"key": "apache-2.0"}}
                 ]
             }
-
             # this get repos_url from payload
             mock__public_repos_url.return_value = payload['repos_url']
             # this is payload
             mock_get_json.return_value = payload['repos']
-
             obj = GithubOrgClient('google')
             self.assertEqual(obj.public_repos(), ['repo1', 'repo2'])
-
             mock__public_repos_url.assert_called_once()
             mock_get_json.assert_called_once()
-
             # print(f'*** {obj.__dict__} ***')
 
     @parameterized.expand([
@@ -85,26 +78,19 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """ runs once before all tests """
-
         cls.get_patcher = patch('requests.get')
         mock_get = cls.get_patcher.start()
 
         def side_effect(url):
             mock_get_request = MagicMock()
-
             if url.endswith('/orgs/google'):
                 mock_get_request.json.return_value = cls.org_payload
-
             elif url.endswith('/orgs/google/repos'):
                 mock_get_request.json.return_value = cls.repos_payload
-
             else:
                 mock_get_request.json.return_value = None
-
             return mock_get_request
-
         mock_get.side_effect = side_effect
-
         cls.obj = GithubOrgClient('google')  # create instance
 
     @classmethod
