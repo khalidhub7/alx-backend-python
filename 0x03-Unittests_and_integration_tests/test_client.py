@@ -74,40 +74,47 @@ class TestGithubOrgClient(unittest.TestCase):
 
 @parameterized_class([
     {
-        'org_payload': TEST_PAYLOAD[0][0],
-        'repos_payload': TEST_PAYLOAD[0][1],
-        'expected_repos': TEST_PAYLOAD[0][2],
-        'apache2_repos': TEST_PAYLOAD[0][3]
+        'org_payload': TEST_PAYLOAD[0][0],        # URL to fetch org's repos
+        'repos_payload': TEST_PAYLOAD[0][1],      # mocked repos list
+        'expected_repos': TEST_PAYLOAD[0][2],     # expected repo names
+        'apache2_repos': TEST_PAYLOAD[0][3]       # expected Apache2 repos
     }
 ])
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """ test 'GithubOrgClient' class with fixtures.py """
     @classmethod
     def setUpClass(cls):
-        """ runs before each test """
+        """ runs once before all tests """
+
         cls.get_patcher = patch('requests.get')
         mock_get = cls.get_patcher.start()
 
         def side_effect(url):
-            mock_resp = MagicMock()
+            mock_get_request = MagicMock()
+
             if url.endswith('/orgs/google'):
-                mock_resp.json.return_value = cls.org_payload
+                mock_get_request.json.return_value = cls.org_payload
+
             elif url.endswith('/orgs/google/repos'):
-                mock_resp.json.return_value = cls.repos_payload
-            return mock_resp
+                mock_get_request.json.return_value = cls.repos_payload
+
+            else:
+                mock_get_request.json.return_value = None
+
+            return mock_get_request
 
         mock_get.side_effect = side_effect
 
     @classmethod
     def tearDownClass(cls):
-        """ runs after each test """
+        """ runs once after all tests """
         cls.get_patcher.stop()
 
     def test_public_repos(self) -> None:
         """ test 'public_repos' """
-        obj = GithubOrgClient("google")
-        repos = obj.public_repos()
-        self.assertEqual(repos, self.expected_repos)
+        obj = GithubOrgClient('google')
+        all_repos = obj.public_repos()
+        self.assertEqual(all_repos, self.expected_repos)
 
 
 if __name__ == '__main__':
