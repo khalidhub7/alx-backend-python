@@ -105,16 +105,22 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
         mock_get.side_effect = side_effect
 
+        cls.obj = GithubOrgClient('google')  # create instance
+
     @classmethod
     def tearDownClass(cls):
         """ runs once after all tests """
         cls.get_patcher.stop()
 
     def test_public_repos(self) -> None:
-        """ test 'public_repos' """
-        obj = GithubOrgClient('google')
-        all_repos = obj.public_repos()
+        """ test 'public_repos' without lisence """
+        all_repos = self.obj.public_repos()
         self.assertEqual(all_repos, self.expected_repos)
+
+    def test_public_repos_with_license(self):
+        """ test 'public_repos' with lisence """
+        all_repos_with_license = self.obj.public_repos('apache-2.0')
+        self.assertEqual(all_repos_with_license, self.apache2_repos)
 
 
 if __name__ == '__main__':
